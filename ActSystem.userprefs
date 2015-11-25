@@ -1,0 +1,14 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/App/Scripts/Character.cs">
+    <Files>
+      <File FileName="Assets/App/Editor/ActionEditPanel.cs" Line="121" Column="3" />
+      <File FileName="Assets/App/Scripts/ActionEditorManager.cs" Line="4" Column="19" />
+      <File FileName="Assets/App/Scripts/Character.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
