@@ -9,12 +9,16 @@ public class ActionEditPanel : EditorWindow {
 	private const string ACTION_EDITOR_SCENE = "Assets/App/Scenes/ActionEditor.unity";
 
 	private string m_ActionPath = string.Empty;
+	private string m_ActionFileName = string.Empty;
 	private string m_CharaPath = string.Empty;
 	private string m_WeaponPath = string.Empty;
 
 	private GameObject m_CharaSource;
+	private Character m_Character;
 
 	private GameObject m_WeaponSource;
+
+	private ActionTable m_ActionTable;
 
 	[MenuItem ("Tools/Action Edit Panel")]
 	public static void OpenEditPanel () {
@@ -32,17 +36,34 @@ public class ActionEditPanel : EditorWindow {
 			// Load Action
 			if (GUILayout.Button ("Load Action")) {
 				m_ActionPath = EditorUtility.OpenFilePanel ("Open Action...", Application.dataPath + "/App/ExternalResources/Action", "asset"); 
+				if (!string.IsNullOrEmpty (m_ActionPath)) {
+					m_ActionFileName = System.IO.Path.GetFileNameWithoutExtension (m_ActionPath);
+					m_ActionTable = (ActionTable)GameObject.Instantiate (
+						AssetDatabase.LoadAssetAtPath (m_ActionPath.Substring (m_ActionPath.IndexOf ("Assets")), typeof(ActionTable)));
+				}
 			}
 
 			// Save Action
 			if (GUILayout.Button ("Save Action")) {
-			
+				m_ActionPath = EditorUtility.SaveFilePanel ("Save Action...", Application.dataPath + "/App/ExternalResources/Action", m_ActionFileName, "asset");
+
+				if (m_ActionPath != null && m_ActionTable != null) {
+					m_ActionTable.OnSave (m_ActionPath);
+
+					m_ActionFileName = System.IO.Path.GetFileNameWithoutExtension (m_ActionFileName);
+				}
 			}
 
 			// Clear Action
 			if (GUILayout.Button ("Clear Action")) {
+				m_ActionPath = string.Empty;
+				m_ActionFileName = string.Empty;
+				m_ActionTable = null;
 			}
 			EditorGUILayout.EndHorizontal ();
+
+			if (m_ActionTable == null)
+				m_ActionTable = new ActionTable ();
 		}
 
 		{ // Column 2
@@ -54,7 +75,7 @@ public class ActionEditPanel : EditorWindow {
 			EditorGUILayout.BeginHorizontal ();
 			// Set Character
 			if (GUILayout.Button ("Load Chara", GUILayout.Width (120))) {
-				m_CharaPath = EditorUtility.OpenFilePanel ("Load Character...", Application.dataPath + "/App/ExternalResources/Character/Prefabs", "prefab"); 
+				m_CharaPath = EditorUtility.OpenFilePanel ("Load Character...", Asset.Character.ASSET_DIR, Asset.Character.EXTENSION); 
 				CreateCharacter ();
 			}
 				
@@ -64,7 +85,7 @@ public class ActionEditPanel : EditorWindow {
 			EditorGUILayout.BeginHorizontal ();
 			// Set Character
 			if (GUILayout.Button ("Load Weapon", GUILayout.Width (120))) {
-				m_WeaponPath = EditorUtility.OpenFilePanel ("Load Weapon...", Application.dataPath + "/App/ExternalResources/Weapon/Prefabs", "prefab"); 
+				m_WeaponPath = EditorUtility.OpenFilePanel ("Load Weapon...", Asset.Weapon.ASSET_DIR, Asset.Weapon.EXTENSION); 
 				CreateWeapon ();
 			}
 
@@ -81,6 +102,23 @@ public class ActionEditPanel : EditorWindow {
 
 			EditorGUILayout.EndVertical ();
 		}
+			
+		{ // Column 3
+			EditorGUILayout.BeginHorizontal ();
+			if (GUILayout.Button ("Play Action")) {
+			}
+				
+			if (GUILayout.Button ("Action +")) {
+				m_ActionTable.ActionObjects.Add (new ActionObject ());
+			}
+			EditorGUILayout.EndHorizontal ();
+			
+		}
+
+
+		m_ActionTable.OnEditorDraw (m_Character, 22f * 6);
+
+		Repaint();
 	}
 
 	private void SetupScene () {
@@ -96,6 +134,8 @@ public class ActionEditPanel : EditorWindow {
 		m_CharaSource = AssetDatabase.LoadAssetAtPath (m_CharaPath.Substring (m_CharaPath.IndexOf ("Assets")), typeof(GameObject)) as GameObject;
 		m_CharaSource = GameObject.Instantiate (m_CharaSource) as GameObject;
 
+		m_Character = m_CharaSource.AddComponent <Character> ();
+
 		Transform charaTran = m_CharaSource.transform;
 		charaTran.parent = ActionEditorManager.I.anchorChara;
 		charaTran.localPosition = Vector3.zero;
@@ -105,10 +145,10 @@ public class ActionEditPanel : EditorWindow {
 	}
 
 	private void CleanCharacter () {
-		if (m_CharaSource != null)
-			DestroyImmediate (m_CharaSource);
+		if (m_Character != null)
+			DestroyImmediate (m_Character.gameObject);
 
-		m_CharaSource = null;
+		m_Character = null;
 	}
 
 	private void CreateWeapon () {
