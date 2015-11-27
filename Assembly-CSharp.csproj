@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{63434CD5-4F4B-9FDE-595E-06DDD914BB38}</ProjectGuid>
+	<ProjectGuid>{27A48A07-CC24-975D-21D5-165052E12F13}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,9 +46,14 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\App\Scripts\ActionEditorManager.cs" />
-     <Compile Include="Assets\App\Scripts\Character.cs" />
-     <None Include="Assets\App\ExternalResources\Shaders\OutlineSilhouetteToon.shader" />
+     <Compile Include="Assets\ActionSystem\Scripts\ActionEditorManager.cs" />
+     <Compile Include="Assets\ActionSystem\Scripts\ActionTable.cs" />
+     <Compile Include="Assets\ActionSystem\Scripts\Character.cs" />
+     <Compile Include="Assets\ActionSystem\Scripts\EffectController.cs" />
+     <Compile Include="Assets\ActionSystem\Scripts\Utils.cs" />
+     <None Include="Assets\ActionSystem\ExternalResources\Shaders\OutlineSilhouetteToon.shader" />
+     <None Include="Assets\ActionSystem\ExternalResources\Shaders\Mobile-Particle-Add.shader" />
+     <None Include="Assets\ActionSystem\ExternalResources\Shaders\Mobile-Particle-Alpha.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity_4.6.5/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.5/UnityEngine.UI.dll</HintPath>
  </Reference>

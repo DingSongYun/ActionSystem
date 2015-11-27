@@ -1,0 +1,11 @@
+/Users/Tdsy/Workspace/Unity/ActionSystem/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/Tdsy/Workspace/Unity/ActionSystem/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/Tdsy/Workspace/Unity/ActionSystem/obj/Debug/Assembly-CSharp.dll
+/Users/Tdsy/Workspace/Unity/ActionSystem/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/Tdsy/Workspace/Unity/ActionSystem/Temp/bin/Debug/UnityEngine.dll
+/Users/Tdsy/Workspace/Unity/ActionSystem/Temp/bin/Debug/UnityEditor.dll
+/Users/Tdsy/Workspace/Unity/ActionSystem/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/Tdsy/Workspace/Unity/ActionSystem/Temp/bin/Debug/Mono.Cecil.dll
+/Users/Tdsy/Workspace/Unity/ActionSystem/Temp/bin/Debug/nunit.framework.dll
+/Users/Tdsy/Workspace/Unity/ActionSystem/Temp/bin/Debug/Unity.DataContract.dll
+/Users/Tdsy/Workspace/Unity/ActionSystem/Temp/bin/Debug/ICSharpCode.NRefactory.dll
