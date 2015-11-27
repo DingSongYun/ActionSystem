@@ -1,3 +1,5 @@
 Base path: /Applications/Unity_4.6.5/Unity.app/Contents
 Pipe name: \\.\pipe\UnityShaderCompiler-1--1593081388
 Cmd: getPlatforms
+
+Quitting shader compiler process
