@@ -22,6 +22,8 @@ public class ActionEditPanel : EditorWindow {
 
 	private bool m_PauseActing = false;
 
+	private float m_SpeedScale = 1;
+
 	[MenuItem ("Tools/Action Edit Panel")]
 	public static void OpenEditPanel () {
 		EditorWindow.GetWindow <ActionEditPanel> (false, "Action Edit");
@@ -107,6 +109,14 @@ public class ActionEditPanel : EditorWindow {
 
 				GUILayout.FlexibleSpace ();
 
+				{ // Time Scale
+					GUILayout.Label ("Action Speed:", GUILayout.Width (80f));
+					m_SpeedScale = EditorGUILayout.FloatField (m_SpeedScale, GUILayout.Width (60f));
+					GUILayout.Space (20f);
+					if (!m_PauseActing)
+						Time.timeScale = m_SpeedScale;
+				}
+
 				if (m_Character != null && m_Character.IsActing && !m_PauseActing) {
 					if (GUILayout.Button ("Pause Action")) {
 						if (m_Character.IsActing) {
@@ -128,7 +138,7 @@ public class ActionEditPanel : EditorWindow {
 							m_Character.PlayAction (m_ActionTable);
 						} else if (m_PauseActing) {
 							m_PauseActing = false;
-							Time.timeScale = 1f;
+							Time.timeScale = m_SpeedScale;
 						}
 					}
 				}

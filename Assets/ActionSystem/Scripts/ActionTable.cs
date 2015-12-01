@@ -167,7 +167,7 @@ public class ActionObject {
 	public class Effect {
 		public string path;
 		public string parent;
-		public bool enable = false;
+		public bool enable = true;
 		public bool offsetEnable = true;
 		public Vector3 offset = Vector3.zero;
 		public bool rotateEnable = true;
@@ -298,6 +298,7 @@ public class ActionObject {
 
 
 		UpdateActionAnim (player);
+		m_SelectTime = m_CurrTime;
 	}
 
 	private void UpdateActionAnim (Character player) {
