@@ -97,6 +97,11 @@ public class ActionEditPanel : EditorWindow {
 						m_ActionFileName = System.IO.Path.GetFileNameWithoutExtension (m_ActionPath);
 						m_ActionTable = (ActionTable)GameObject.Instantiate (
 							AssetDatabase.LoadAssetAtPath (m_ActionPath.Substring (m_ActionPath.IndexOf ("Assets")), typeof(ActionTable)));
+
+						//initialize frame anim
+						m_ActionTable.ActionObjects.ForEach((actionObj) => {
+							actionObj.LoadAnimation(actionObj.m_AnmPath);
+						});
 					}
 				}
 

@@ -45,6 +45,9 @@ public class ActionTable : ScriptableObject {
 			if (frame.effect.enable && !string.IsNullOrEmpty (frame.effect.path)) {
 				PlayEffect (player, frame.effect);
 			}
+			if(frame.message != ""){
+				player.SendMessage(frame.message, null, SendMessageOptions.RequireReceiver);
+			}
 		}
 	}
 
@@ -131,7 +134,7 @@ public class ActionObject {
 	private string m_Name = string.Empty;
 
 	[SerializeField]
-	private string m_AnmPath;
+	public string m_AnmPath;
 	private AnimationClip m_AnmClip;
 	public string AnmName {
 		get {
@@ -180,7 +183,7 @@ public class ActionObject {
 	public class ActionKeyFrame {
 		public float time;
 		public Effect effect = new Effect ();
-
+		public string message = "";
 		//private GameObject m_Effect = null;
 		private GameObject m_EfParent = null;
 
@@ -282,6 +285,14 @@ public class ActionObject {
 
 			}
 
+			{ // Column 4 sendmessage
+				EditorGUILayout.BeginHorizontal ();
+
+				GUILayout.Label ("SendMessage",GUILayout.Width (80f));
+				message = GUILayout.TextField ( message );
+			
+				EditorGUILayout.EndHorizontal ();
+			}
 			EditorGUILayout.EndVertical ();
 
 			return yToDraw;
@@ -670,7 +681,7 @@ public class ActionObject {
 		return EditorGUILayout.IntField (value, args);
 	}
 
-	private void LoadAnimation (string path) {
+	public void LoadAnimation (string path) {
 		m_AnmClip = (AnimationClip)AssetDatabase.LoadAssetAtPath (path.Substring (path.IndexOf ("Assets")), typeof(AnimationClip));
 	}
 	#endif

@@ -32,4 +32,8 @@ public class Character : MonoBehaviour {
 		m_IsActing = false;
 		m_ActingTime = 0f;
 	}
+
+	public void test(){
+		Debug.Log ("character sendmessage test");
+	}
 }
