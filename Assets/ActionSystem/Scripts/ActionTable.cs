@@ -400,6 +400,7 @@ public class ActionObject {
 			string newAnmPath = "";
 			if (GUILayout.Button ("Animation")) {
 				newAnmPath = EditorUtility.OpenFilePanel ("Selete Animation...", Asset.Animation.ASSET_DIR, Asset.Animation.EXTENSION);
+				newAnmPath = newAnmPath.Substring(newAnmPath.IndexOf("Assets"));
 			}
 
 			if (!string.IsNullOrEmpty (newAnmPath))
@@ -410,7 +411,7 @@ public class ActionObject {
 			m_AnmClip = (AnimationClip)EditorGUILayout.ObjectField (m_AnmClip, typeof(AnimationClip), false);
 
 			if (m_AnmClip != null) {
-				newAnmPath = string.Format (Application.dataPath + "/ActionSystem/ExternalResources/Animation/{0}.anim", m_AnmClip.name);
+				newAnmPath = string.Format ("Assets/ActionSystem/ExternalResources/Animation/{0}.anim", m_AnmClip.name);
 			} else {
 				newAnmPath = string.Empty;
 			}
